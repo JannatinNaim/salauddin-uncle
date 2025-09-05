@@ -9,8 +9,8 @@ import {
     roleMention,
     channelMention,
     AttachmentBuilder,
+    userMention,
 } from "discord.js";
-import { join } from "path";
 
 async function main() {
     const rest = new REST().setToken(process.env.DISCORD_ACCESS_SECRET!);
@@ -33,8 +33,6 @@ async function main() {
 
         switch (interaction.commandName) {
             case summonCommand.name: {
-                const summonerID = interaction.user.id;
-
                 await interaction.reply({
                     content: roleMention(process.env.RADIANT_ROLE_ID!) + " Radiants, assemble.",
                 });
@@ -46,16 +44,22 @@ async function main() {
                 const audio = new AttachmentBuilder("assets/audio/summon.mp3");
 
                 await Promise.all(
-                    role.members.map((member) => {
-                        member.send({
-                            content:
-                                "You're being summoned in " +
-                                channelMention(interaction.channelId) +
-                                " to play a match of Valorant.",
-                            tts: true,
-                            files: [audio],
-                        });
-                    })
+                    role.members
+                        .filter((member) => member.id !== interaction.user.id)
+                        .map((member) => {
+                            member.send({
+                                // content:
+                                //     "You're being summoned in " +
+                                //     channelMention(interaction.channelId) +
+                                //     " to play a match of Valorant.",
+                                content:
+                                    userMention(interaction.user.id) +
+                                    " tore Valorant khelte daktese ei channel e." +
+                                    channelMention(interaction.channelId) +
+                                    ". Taratari ay, otherwise guli bade shob lagay lamu.",
+                                files: [audio],
+                            });
+                        })
                 );
             }
         }
