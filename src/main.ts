@@ -45,8 +45,10 @@ async function main() {
                 });
 
                 const guild = client.guilds.resolve(process.env.DISCORD_GUILD_ID!)!;
+
                 console.debug("Triggered In Guild:", guild.name);
 
+                await guild.members.fetch();
                 const role = (await guild.roles.fetch(process.env.RADIANT_ROLE_ID!))!;
                 console.debug("Mentioning Role:", role.name);
 
