@@ -35,7 +35,7 @@ async function main() {
             case summonCommand.name: {
                 await interaction.reply({
                     // content: roleMention(process.env.RADIANT_ROLE_ID!) + " Radiants, assemble.",
-                    content: roleMention(process.env.RADIANT_ROLE_ID!) + "Indian chudmu ajke, ay.",
+                    content: roleMention(process.env.RADIANT_ROLE_ID!) + " Indian chudmu ajke, ay.",
                 });
 
                 const guild = client.guilds.resolve(process.env.DISCORD_GUILD_ID!)!;
