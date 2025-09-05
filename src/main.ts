@@ -40,7 +40,6 @@ async function main() {
                 console.debug("Command Triggered:", summonCommand.name);
 
                 await interaction.reply({
-                    // content: roleMention(process.env.RADIANT_ROLE_ID!) + " Radiants, assemble.",
                     content: roleMention(process.env.RADIANT_ROLE_ID!) + " Indian chudmu ajke, ay.",
                 });
 
@@ -63,10 +62,6 @@ async function main() {
                 await Promise.all(
                     membersToDM.map((member) => {
                         return member.send({
-                            // content:
-                            //     "You're being summoned in " +
-                            //     channelMention(interaction.channelId) +
-                            //     " to play a match of Valorant.",
                             content:
                                 userMention(interaction.user.id) +
                                 " tore Valorant khelte daktese ei channel e " +
