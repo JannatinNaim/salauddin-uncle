@@ -29,6 +29,7 @@ async function main() {
     });
 
     client.on(Events.InteractionCreate, async (interaction) => {
+        if (interaction.guildId !== process.env.DISCORD_GUILD_ID!) return;
         if (!interaction.isChatInputCommand()) return;
 
         switch (interaction.commandName) {
