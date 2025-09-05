@@ -10,11 +10,14 @@ import {
     channelMention,
     AttachmentBuilder,
     userMention,
+    GatewayIntentBits,
 } from "discord.js";
 
 async function main() {
     const rest = new REST().setToken(process.env.DISCORD_ACCESS_SECRET!);
-    const client = new Client({ intents: [] });
+    const client = new Client({
+        intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.DirectMessages],
+    });
 
     client.once(Events.ClientReady, () => {
         console.log("Sergeant Salauddin, reporting to duty, sir!");
